@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# DevOps Hub for Bluescope
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript Azure DevOps extension for tracking team activity and detecting anomalies across commits, pull requests, and work items.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is an Azure DevOps hub extension that loads inside the Azure DevOps web experience and displays:
 
-## React Compiler
+- Team productivity summary
+- Commit, PR, and work item counts per developer
+- Developer detail view with commit activity, work item list, and PR status
+- Anomaly detection based on effort, commit volume, PR activity, and work item engagement
+- Date range filters for `Today`, `This Week`, and `This Month`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Azure DevOps Extension SDK integration
+- ADO REST API usage for team members, git commits, pull requests, and work items
+- Developer drill-down experience with charts and status badges
+- Simple anomaly detection rules for productivity monitoring
+- Vite + React + TypeScript application bundle
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React 19
+- TypeScript 6
+- Vite 8
+- Azure DevOps Extension SDK
+- Azure DevOps Node API
+- ESLint
+- Recharts for visual commit analytics
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 20+ installed
+- npm available
+- Azure DevOps organization and project access
+- Browser session authenticated with Azure DevOps
+
+## Setup
+
+```bash
+cd "d:\Acads\Internships\5. BlueScope\2. ado-devops-hub"
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Run locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+> Note: Azure DevOps SDK authentication may require the extension to run through the Azure DevOps host or a secure local preview.
+
+## Build
+
+```bash
+npm run build
+```
+
+This command compiles TypeScript and bundles the app into the `dist/` folder.
+
+## Lint
+
+```bash
+npm run lint
+```
+
+## Extension manifest
+
+The extension manifest is defined in `vss-extension.json`:
+
+- `id`: `devops-hub-for-bluescope`
+- `name`: `DevOps Hub for Bluescope`
+- `publisher`: `MohamedYaseen`
+- `version`: `1.0.2`
+- `targets`: Azure DevOps
+- `scopes`: `vso.work`, `vso.code`, `vso.build`
+- `uri`: `dist/index.html`
+
+## How it works
+
+- `src/main.tsx` initializes the Azure DevOps Extension SDK and renders the React app.
+- `src/App.tsx` shows the top-level team dashboard and developer detail flow.
+- `src/components/TeamView.tsx` loads team members, computes commit/PR/work item metrics, and detects anomalies.
+- `src/components/DeveloperView.tsx` displays developer activity charts, recent commits, PRs, and work items.
+- `src/api/adoApi.ts` fetches Azure DevOps data through REST APIs.
+- `src/anomaly/detector.ts` applies simple productivity anomaly rules.
+
+## Important notes
+
+- The app reads team members from Azure DevOps teams.
+- Commit activity queries repositories in the current project.
+- Pull request data is filtered by author email and selected date range.
+- Work item effort is read from `Microsoft.VSTS.Scheduling.Effort`.
+- Custom ADO field names or work item states may require query updates.
+
+## Next steps
+
+- Package the extension with Azure DevOps tooling (for example `tfx extension create`)
+- Add build automation for packaging and publishing
+- Improve anomaly rules with configurable thresholds
+- Add support for multiple teams or project-wide summaries
