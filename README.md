@@ -97,7 +97,8 @@ The extension manifest is defined in `vss-extension.json`:
 
 ## Next steps
 
-- Package the extension with Azure DevOps tooling (for example `tfx extension create`)
+- Package the extension with Azure DevOps tooling(as shown below)
+- Run these 2 commands sequentially in the terminal: npm run build  --> 2. tfx extension create --manifest-globs vss-extension.json
 - Add build automation for packaging and publishing
 - Improve anomaly rules with configurable thresholds
 - Add support for multiple teams or project-wide summaries
