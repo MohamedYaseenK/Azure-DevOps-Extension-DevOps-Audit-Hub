@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "devops-hub-for-bluescope",
   "name": "DevOps Hub for Bluescope",
-  "version": "1.2.3",
+  "version": "1.2.6",
   "publisher": "MohamedYaseen",
   "description": "Developer productivity monitoring hub for Azure DevOps — tracks work items, commits, PRs and detects anomalies.",
   "categories": ["Azure Boards"],
