@@ -1,4 +1,4 @@
-# DevOps Hub for Bluescope
+# Azure DevOps Hub for Productivity
 
 **Azure DevOps extension for team productivity monitoring, commit analytics, and anomaly detection.**
 
