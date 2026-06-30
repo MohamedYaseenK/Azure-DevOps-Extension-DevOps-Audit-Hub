@@ -126,7 +126,7 @@ The extension manifest in `vss-extension.json` defines:
 - `id`: `devops-hub-for-bluescope`
 - `name`: `DevOps Hub for Bluescope`
 - `publisher`: `MohamedYaseen`
-- `version`: `1.2.6`
+- `version`: `1.3.1`
 - `description`: Developer productivity monitoring hub for Azure DevOps
 - `targets`: `Microsoft.VisualStudio.Services`
 - `scopes`: `vso.project`, `vso.code`, `vso.work`
